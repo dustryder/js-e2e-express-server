@@ -28,6 +28,10 @@ stages:
         npm install
       displayName: 'npm install, build and test'
 
+    - script: |
+        npm test
+      displayName: 'npm test'
+
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
