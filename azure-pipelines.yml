@@ -42,14 +42,10 @@ stages:
 
 - stage: Deploy
   displayName: Deploy stage
-    - job: Deploy
-    displayName: Deploy
-    pool: 
-      vmImage: $(vmImageName)
 
-    steps:
-      - task: AzureWebApp@1
-      inputs:
-        azureSubscription: 'TestPipelines'
-        appName: 'TestPipelines'
-        package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+  steps:
+  - task: AzureWebApp@1
+    inputs:
+      azureSubscription: 'TestPipelines'
+      appName: 'TestPipelines'
+      package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
