@@ -43,9 +43,12 @@ stages:
 - stage: Deploy
   displayName: Deploy stage
 
-  steps:
-  - task: AzureWebApp@1
-    inputs:
-      azureSubscription: 'TestPipelines'
-      appName: 'TestPipelines'
-      package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+  jobs:
+  - job: Deploy
+    displayName: Deploy
+    steps:
+    - task: AzureWebApp@1
+      inputs:
+        azureSubscription: 'TestPipelines'
+        appName: 'TestPipelines'
+        package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
