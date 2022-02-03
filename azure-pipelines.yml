@@ -31,4 +31,4 @@ steps:
     archiveType: zip
     archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
     replaceExistingArchive: true
-  displayName: 'Archive Files
+  displayName: 'Archive Files'
