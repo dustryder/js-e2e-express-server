@@ -32,7 +32,6 @@ stages:
       displayName: 'Download test env'
 
     - script: |
-        cp $(testEnv.secureFilePath) $(System.DefaultWorkingDirectory)/src
         cp $(testEnv.secureFilePath) $(System.DefaultWorkingDirectory)
       displayName: 'Copy test env'
 
