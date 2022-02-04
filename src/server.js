@@ -1,9 +1,11 @@
 const express = require('express');
 const favicon = require('serve-favicon');
 const path = require('path');
-// const { MongoClient } = require('mongodb');
+const util = require('util');
+
+global.TextEncoder = util.TextEncoder;
+const { MongoClient } = require('mongodb');
 const utils = require('./utils');
-// global.TextEncoder = require('util').TextEncoder; 
 
 // fn to create express server
 const create = async () => {
