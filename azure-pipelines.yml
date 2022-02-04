@@ -35,6 +35,9 @@ stages:
         cp $(testEnv.secureFilePath) $(System.DefaultWorkingDirectory)
       displayName: 'Copy test env'
 
+    - script: |
+        cat $(System.DefaultWorkingDirectory)/.env
+      displayName: 'Cat test env'
 
     - script: |
         npm install
