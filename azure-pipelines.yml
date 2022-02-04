@@ -26,8 +26,15 @@ stages:
       displayName: 'Install Node.js'
 
     - task: DownloadSecureFile@1
+      name: testEnv
       inputs:
         secureFile: '.env'
+      displayName: 'Download test env'
+
+    - script: |
+        cp $(testEnv.secureFilePath) $(System.DefaultWorkingDirectory)
+      displayName: 'Copy test env'
+
 
     - script: |
         npm install
