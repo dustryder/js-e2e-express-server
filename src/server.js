@@ -1,12 +1,21 @@
 const express = require('express');
 const favicon = require('serve-favicon');
 const path = require('path');
+const { MongoClient } = require('mongodb');
 const utils = require('./utils');
 
 // fn to create express server
 const create = async () => {
 
     console.log(process.env.COSMOS_URI);
+    const client = new MongoClient(String(process.env.COSMOS_URI));
+    await client.connect();
+
+    const db = client.db('Test');
+    const collection = db.collection('TestCollection');
+
+    const result = await collection.find({}).toArray();
+    console.log(result);
 
     // server
     const app = express();
