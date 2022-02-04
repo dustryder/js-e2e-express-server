@@ -41,6 +41,7 @@ stages:
       displayName: 'npm install, build and test'
 
     - script: |
+        ls .
         npm test
       displayName: 'npm test'
 
