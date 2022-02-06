@@ -3,7 +3,7 @@ const { create } = require('./server');
 
 describe('root', () => {
 
-    it('request root, returns html', async (done) => {
+    it('request root, returns html', async () => {
 
         const app = await create();
 
@@ -12,10 +12,9 @@ describe('root', () => {
             .expect(200)
             .then((res) => {
                 expect(res.text).toContain('Welcome to Express');
-                done();
-            }).catch(err => done(err));;
+            });
     });
-    it('request api, returns json', async (done) => {
+    it('request api, returns json', async () => {
 
         const app = await create();
 
@@ -24,10 +23,9 @@ describe('root', () => {
             .expect(200)
             .then((res) => {
                 expect(res.body).toEqual({ hello: 'goodbye' });
-                done();
-            }).catch(err => done(err));;
+            });
     });    
-    it('request invalid path, returns 404', async (done) => {
+    it('request invalid path, returns 404', async () => {
 
         const app = await create();
         const invalidPath = '/invalid-path';
@@ -38,7 +36,6 @@ describe('root', () => {
             .expect(404)
             .then((res) => {
                 expect(res.text).toContain(invalidPathError);
-                done();
-            }).catch(err => done(err));;
+            });
     });
 });
