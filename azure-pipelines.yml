@@ -55,21 +55,40 @@ stages:
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
 
-# - stage: Deploy
-#   displayName: Deploy stage
+- stage: Deploy
+  displayName: Deploy stage
 
-#   jobs:
-#   - job: Deploy
-#     displayName: Deploy
-#     steps:
-#     - task: DownloadPipelineArtifact@2
-#       inputs:
-#         source: 'current'
-#         artifact: 'drop'
-#         path: '$(Pipeline.Workspace)'
+  jobs:
+  - deployment: Deployment
+    environment: 'Production'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
 
-#     - task: AzureWebApp@1
-#       inputs:
-#         azureSubscription: 'TestPipelines'
-#         appName: 'TestPipelines'
-#         package: '$(Pipeline.Workspace)/$(Build.BuildId).zip'
+          - task: DownloadPipelineArtifact@2
+            inputs: 
+              source: 'current'
+              artifact: 'drop'
+              path: '$(Pipeline.Workspace'
+          
+          - task: AzureWebApp@1
+            inputs:
+              azureSubscription: 'TestPipelines'
+              appName: 'TestPipelines'
+              package: '$(Pipeline.Workspace)/$(Build.BuildId).zip'
+
+  # - job: Deploy
+  #   displayName: Deploy
+  #   steps:
+  #   - task: DownloadPipelineArtifact@2
+  #     inputs:
+  #       source: 'current'
+  #       artifact: 'drop'
+  #       path: '$(Pipeline.Workspace)'
+
+  #   - task: AzureWebApp@1
+  #     inputs:
+  #       azureSubscription: 'TestPipelines'
+  #       appName: 'TestPipelines'
+  #       package: '$(Pipeline.Workspace)/$(Build.BuildId).zip'
