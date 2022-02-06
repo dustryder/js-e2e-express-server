@@ -10,16 +10,14 @@ const utils = require('./utils');
 // fn to create express server
 const create = async () => {
 
-    console.log(process.version);
-    console.log(process.env.COSMOS_URI);
-    // const client = new MongoClient(String(process.env.COSMOS_URI));
-    // await client.connect();
+    const client = new MongoClient(String(process.env.COSMOS_URI));
+    await client.connect();
 
-    // const db = client.db('Test');
-    // const collection = db.collection('TestCollection');
+    const db = client.db('Test');
+    const collection = db.collection('TestCollection');
 
-    // const result = await collection.find({}).toArray();
-    // console.log(result);
+    const result = await collection.find({}).toArray();
+    console.log(result);
 
     // server
     const app = express();
@@ -35,10 +33,7 @@ const create = async () => {
     });
 
     // root route - serve static file
-    app.get('/', (req, res) => {
-        return res.sendFile(path.join(__dirname, '../public/client.html'));
-
-    });
+    app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../public/client.html')));
 
     // Catch errors
     app.use(utils.logErrors);
