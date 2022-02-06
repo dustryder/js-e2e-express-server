@@ -70,7 +70,7 @@ stages:
             inputs: 
               source: 'current'
               artifact: 'drop'
-              path: '$(Pipeline.Workspace'
+              path: '$(Pipeline.Workspace)'
           
           - task: AzureWebApp@1
             inputs:
