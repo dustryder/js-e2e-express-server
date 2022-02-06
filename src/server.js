@@ -19,6 +19,8 @@ const create = async () => {
     const result = await collection.find({}).toArray();
     console.log(result);
 
+    await client.close();
+
     // server
     const app = express();
     app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')));
