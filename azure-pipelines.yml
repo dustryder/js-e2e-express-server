@@ -77,18 +77,3 @@ stages:
               azureSubscription: 'TestPipelines'
               appName: 'TestPipelines'
               package: '$(Pipeline.Workspace)/$(Build.BuildId).zip'
-
-  # - job: Deploy
-  #   displayName: Deploy
-  #   steps:
-  #   - task: DownloadPipelineArtifact@2
-  #     inputs:
-  #       source: 'current'
-  #       artifact: 'drop'
-  #       path: '$(Pipeline.Workspace)'
-
-  #   - task: AzureWebApp@1
-  #     inputs:
-  #       azureSubscription: 'TestPipelines'
-  #       appName: 'TestPipelines'
-  #       package: '$(Pipeline.Workspace)/$(Build.BuildId).zip'
