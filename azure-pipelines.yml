@@ -5,6 +5,7 @@
 
 trigger:
 - main
+- integration
 
 pool:
   vmImage: ubuntu-latest
@@ -56,6 +57,7 @@ stages:
       artifact: drop
 
 - stage: Deploy
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/integration'))
   displayName: Deploy stage
 
   jobs:
@@ -77,18 +79,3 @@ stages:
               azureSubscription: 'TestPipelines'
               appName: 'TestPipelines'
               package: '$(Pipeline.Workspace)/$(Build.BuildId).zip'
-
-  # - job: Deploy
-  #   displayName: Deploy
-  #   steps:
-  #   - task: DownloadPipelineArtifact@2
-  #     inputs:
-  #       source: 'current'
-  #       artifact: 'drop'
-  #       path: '$(Pipeline.Workspace)'
-
-  #   - task: AzureWebApp@1
-  #     inputs:
-  #       azureSubscription: 'TestPipelines'
-  #       appName: 'TestPipelines'
-  #       package: '$(Pipeline.Workspace)/$(Build.BuildId).zip'
