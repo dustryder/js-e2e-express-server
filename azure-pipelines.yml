@@ -38,10 +38,10 @@ stages:
 
     - script: |
         npm install
-        echo ${Build.SourceBranch}
-        echo ${System.PullRequest.SourceBranch}
-        echo ${Build.SourceBranchName}
-        echo ${Build.Reason}
+        echo $(Build.SourceBranch)
+        echo $(System.PullRequest.SourceBranch)
+        echo $(Build.SourceBranchName)
+        echo $(Build.Reason)
       displayName: 'npm install, build and test'
 
     - script: |
