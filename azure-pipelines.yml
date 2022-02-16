@@ -37,6 +37,10 @@ stages:
       displayName: 'Copy test env'
 
     - script: |
+        echo $(Build.SourceBranch)
+        echo $(System.PullRequest.SourceBranch)
+        echo $(Build.SourceBranchName)
+        echo $(Build.Reason)
         npm install
       displayName: 'npm install, build and test'
 
