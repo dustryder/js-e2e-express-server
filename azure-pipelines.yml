@@ -37,6 +37,10 @@ stages:
       displayName: 'Copy test env'
 
     - script: |
+        echo $(Build.SourceBranch)
+        echo $(System.PullRequest.SourceBranch)
+        echo $(Build.SourceBranchName)
+        echo $(Build.Reason)
         npm install
         echo $(Build.SourceBranch)
         echo $(System.PullRequest.SourceBranch)
@@ -61,6 +65,7 @@ stages:
       artifact: drop
 
 - stage: Deploy
+  condition: and(succeeded(), eq(variables['Build.Reason'], 'IndividualCI'))
   displayName: Deploy stage
 
   jobs:
