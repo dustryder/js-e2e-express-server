@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node src/index.js",
     "start:dev": "npm run lint && nodemon --exec node src/index.js --unhandled-rejections=warn",
-    "test": "jest --detectOpenHandles --coverage --setupFiles dotenv/config",
+    "test": "jest --detectOpenHandles --coverage --setupFiles dotenv/config"
   },
   "repository": {
     "type": "git",
