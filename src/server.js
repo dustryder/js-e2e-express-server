@@ -20,7 +20,10 @@ const create = async () => {
     // root route - serve static file
     app.get('/api/hello', (req, res) => {
 
-        res.json({hello: `${req.hostname}`});
+        res.json({
+            hello: `${req.hostname}`,
+            world: `${req.headers['x-forwarded-for'] || req.socket.remoteAddress}`,
+        });
         res.end();
     });
 
