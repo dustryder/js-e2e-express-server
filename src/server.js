@@ -10,17 +10,6 @@ const utils = require('./utils');
 // fn to create express server
 const create = async () => {
 
-    const client = new MongoClient(String(process.env.COSMOS_URI));
-    await client.connect();
-
-    const db = client.db('Test');
-    const collection = db.collection('TestCollection');
-
-    const result = await collection.find({}).toArray();
-    console.log(result);
-
-    await client.close();
-
     // server
     const app = express();
     app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')));
@@ -30,7 +19,8 @@ const create = async () => {
 
     // root route - serve static file
     app.get('/api/hello', (req, res) => {
-        res.json({hello: 'goodbye'});
+
+        res.json({hello: `${req.hostname}`});
         res.end();
     });
 
